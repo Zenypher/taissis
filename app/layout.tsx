@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { ThemeProvider as NextThemeProvider } from "next-themes";
+import { NextUIProvider } from "@nextui-org/system";
 import "./globals.css";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Taissis",
-  description: "Realizat de Sebastian Iosif",
+  description: "Proiect realizat de Sebastian Iosif - Grupa 1044A",
 };
 
 export default function RootLayout({
@@ -16,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NextUIProvider className="bg-gradient-to-bl from-slate-100 to-green-300">
+          <NextThemeProvider defaultTheme="light">{children}</NextThemeProvider>
+        </NextUIProvider>
+      </body>
     </html>
   );
 }

@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <div className="flex flex-col pt-4 gap-y-[32px]">
       <div className="flex justify-center px-[20px] lg:px-[280px]">
-        <h1 className="text-[64px] font-bold text-lime-500 drop-shadow-2xl">
+        <h1 className="text-[64px] font-bold text-green-500 drop-shadow-2xl">
           Taissis
         </h1>
       </div>
@@ -26,12 +26,14 @@ export function Hero() {
         </p>
         <div className="pt-[32px] lg:px-[200px] flex flex-col gap-y-[24px] pb-[32px]">
           <div className="flex justify-center">
-            <Image src={Stock} alt="Presentation Image" className="sm:block" />
+            <Image
+              src={Stock}
+              alt="Presentation Image"
+              className="sm:block drop-shadow-2xl"
+            />
           </div>
-          <div className="">
-            <h1 className="font-bold text-3xl text-lime-500">Valori</h1>
-          </div>
-          <ul className="flex flex-col gap-y-[10px]">
+          <h1 className="font-bold text-3xl text-green-500">Valori</h1>
+          <ul className="flex flex-col gap-y-[10px] lg:px-[10px] lg:py-[10px]">
             <li className="flex items-center gap-x-3">
               <Image src={Lightbulb} alt="lightbulb" className="w-[32px]" />
               Creativitate productivă
