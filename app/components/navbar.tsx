@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import Logo from "../../public/assets/logo.png";
+import Logo from "../../public/assets/logo.svg";
 import UserIcon from "../../public/assets/user.svg";
 import ShoppingCart from "../../public/assets/shopping-cart.svg";
-import React from "react";
+import { useState } from "react";
 import {
   Tooltip,
   Button,
@@ -19,7 +19,9 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  Badge,
 } from "@nextui-org/react";
+import { SignedIn, SignedOut, UserButton, UserProfile } from "@clerk/nextjs";
 
 export function NavigationBar() {
   const menuItems = ["Produse", "Despre", "Contact"];
@@ -31,7 +33,10 @@ export function NavigationBar() {
     "Terapia Durerii",
     "Îngrijire ORL",
   ];
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [timeoutId, setTimeoutId] = useState<any>(null);
+  const delay = 1000;
 
   return (
     <Navbar shouldHideOnScroll onMenuOpenChange={setIsMenuOpen} className="">
@@ -41,7 +46,7 @@ export function NavigationBar() {
       />
       <NavbarBrand>
         <NavbarItem as={Link} href="/" className="hidden lg:flex">
-          <Image src={Logo} alt="Logo" className="w-[60px]" />
+          <Image src={Logo} alt="Logo" className="w-[100px]" />
         </NavbarItem>
         <NavbarItem
           as={Link}
@@ -52,46 +57,58 @@ export function NavigationBar() {
         </NavbarItem>
       </NavbarBrand>
       <NavbarContent className="hidden lg:flex gap-x-[20px]" justify="center">
-        <Tooltip
-          placement={"bottom"}
-          offset={110}
-          closeDelay={2000}
-          content={
-            <Dropdown>
-              <DropdownMenu>
-                {productItems.map((item, index) => (
-                  <DropdownItem
-                    key={`${item}-${index}`}
-                    as={Link}
-                    href="/products/ingrijire-plagi"
-                    className="text-green-500"
-                  >
-                    {item}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          }
-        >
-          <NavbarItem>
-            <Button
-              variant="light"
-              color="success"
-              className="font-medium text-[16px]"
-              as={Link}
-              href="/products"
+        <NavbarItem>
+          <Dropdown isOpen={isOpen}>
+            <DropdownTrigger>
+              <Button
+                onMouseEnter={() => {
+                  clearTimeout(timeoutId);
+                  setIsOpen(true);
+                }}
+                onMouseLeave={() => {
+                  const id = setTimeout(() => setIsOpen(false), delay);
+                  setTimeoutId(id);
+                }}
+                variant="light"
+                color="success"
+                className="font-medium text-[16px]"
+                as={Link}
+                href="/products"
+              >
+                Produse
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="Produse"
+              onMouseEnter={() => {
+                clearTimeout(timeoutId);
+                setIsOpen(true);
+              }}
+              onMouseLeave={() => {
+                setIsOpen(false);
+              }}
             >
-              Produse
-            </Button>
-          </NavbarItem>
-        </Tooltip>
+              {productItems.map((value, index) => (
+                <DropdownItem
+                  key={`${value}-${index}`}
+                  as={Link}
+                  color="success"
+                  className="text-success text-medium"
+                  href="/products/ingrijire-plagi"
+                >
+                  {value}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+        </NavbarItem>
         <NavbarItem isActive={true}>
           <Button
             variant="light"
             color="success"
             className="font-medium text-[16px]"
             as={Link}
-            href="#"
+            href="/about"
           >
             Despre
           </Button>
@@ -102,7 +119,7 @@ export function NavigationBar() {
             color="success"
             className="font-medium text-[16px]"
             as={Link}
-            href="#"
+            href="/contact"
           >
             Contact
           </Button>
@@ -110,30 +127,37 @@ export function NavigationBar() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Tooltip content="Coșul meu" delay={1000}>
-            <Button
-              color="default"
-              variant="light"
-              as={Link}
-              href="#"
-              className="flex justify-center"
-            >
-              <Image
-                src={ShoppingCart}
-                alt="Shopping Cart"
-                className="w-[40px]"
-              />
-            </Button>
-          </Tooltip>
+          <Badge
+            content="69"
+            color="success"
+            className="text-white"
+            shape="rectangle"
+          >
+            <Tooltip content="Coșul meu" delay={1000}>
+              <Button
+                color="default"
+                variant="light"
+                as={Link}
+                href="#"
+                className="flex justify-center"
+              >
+                <Image
+                  src={ShoppingCart}
+                  alt="Shopping Cart"
+                  className="w-[40px]"
+                />
+              </Button>
+            </Tooltip>
+          </Badge>
         </NavbarItem>
         <NavbarItem>
           <Tooltip content="Contul meu" delay={1000}>
             <Button
               color="default"
               variant="light"
-              as={Link}
-              href="/account"
               className="flex justify-center"
+              as={Link}
+              href="/sign-in"
             >
               <Image src={UserIcon} alt="Account" className="w-[48px]" />
             </Button>
