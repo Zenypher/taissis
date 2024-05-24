@@ -27,7 +27,7 @@ export function Hero() {
         </p>
         <Image src={Stock} alt="Imagine de prezentare" className="pt-[24px]" />
       </div>
-      <div className="py-[32px] px-[32px] lg:px-[64px] flex flex-col gap-y-[24px]">
+      <div className="py-[32px] px-[32px] lg:px-[64px] flex flex-row gap-x-6">
         <h1 className="font-bold text-3xl text-green-900">Valori</h1>
         <ul className="flex flex-col gap-y-[10px] lg:px-[10px] lg:py-[10px]">
           <li className="flex items-center gap-x-3">

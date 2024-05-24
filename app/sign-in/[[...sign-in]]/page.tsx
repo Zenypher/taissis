@@ -4,10 +4,9 @@ import { SignIn } from "@clerk/nextjs";
 export default function Page() {
   return (
     <>
-      <NavigationBar />
-      <div className="flex flex-col justify-center items-center pt-10">
+      <section className="h-screen flex items-center justify-center py-6">
         <SignIn path="/sign-in" />
-      </div>
+      </section>
     </>
   );
 }
