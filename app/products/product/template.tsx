@@ -1,7 +1,5 @@
-import { Filterbar } from "@/app/components/filter-bar";
-
-export default function Template({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
-  return <>{children} </>;
+export default function Template({children} : {children: React.ReactNode}, props:any) {
+    return (<div className="h-fill flex flex-col lg:flex-row">
+        {children}
+        </div>);
 }

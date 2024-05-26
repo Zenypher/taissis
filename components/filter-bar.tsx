@@ -22,7 +22,7 @@ export function Filterbar(props: any) {
   );
 
   return (
-    <div className="lg:w-1/2 p-4 h-fit lg:h-screen flex flex-col bg-green-50 gap-y-6 shadow-xl">
+    <div className="lg:w-1/3 p-4 h-fit lg:h-screen flex flex-col bg-green-50 gap-y-6 shadow-xl">
       <h1 className="font-bold text-green-500 text-xl">Filtre</h1>
       <Input
         label="Caută produsul"
@@ -74,9 +74,9 @@ export function Filterbar(props: any) {
           onSelectionChange={setSelectedFilters}
         >
           {props.filters.map((item: any) => (
-            <ListboxSection key={item.id} title={item.name}>
+            <ListboxSection key={item.id} title={item.id.charAt(0).toUpperCase() + item.id.slice(1)}>
               {item.filters.map((item: any) => (
-                <ListboxItem key={item.id}>{item.name}</ListboxItem>
+                <ListboxItem key={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</ListboxItem>
               ))}
             </ListboxSection>
           ))}

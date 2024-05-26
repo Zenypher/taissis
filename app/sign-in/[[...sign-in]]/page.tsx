@@ -1,4 +1,4 @@
-import { NavigationBar } from "@/app/components/navbar";
+import { NavigationBar } from "@/components/navbar";
 import { SignIn } from "@clerk/nextjs";
 
 export default function Page() {

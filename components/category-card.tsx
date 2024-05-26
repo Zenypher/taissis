@@ -10,7 +10,7 @@ import { Image } from "@nextui-org/react";
 export function Cards(props: any) {
   return (
     <Link href={props.link}>
-      <Card key={props.key} className="w-full h-full">
+      <Card className="w-full h-full bg-green-50">
         <CardHeader className="p-4 lg:text-xl font-bold text-green-500 text-sm">
           {props.title}
         </CardHeader>

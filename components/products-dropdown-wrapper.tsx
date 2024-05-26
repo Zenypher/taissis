@@ -8,7 +8,7 @@ import {
   Link,
 } from "@nextui-org/react";
 import { useState } from "react";
-import { ProductsList } from "../data/products";
+import { ProductsList } from "../utils/products";
 
 export function ProductsDropdownWrapper() {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,7 +1,6 @@
-import { Filterbar } from "@/app/components/filter-bar";
-import { ProductCard } from "@/app/components/product-card";
-import { IPFilters, IPProduct } from "@/app/data/ingrijirea-plagii-date";
-import { Pagination } from "@nextui-org/react";
+import { Filterbar } from "@/components/filter-bar";
+import { ProductCard } from "@/components/product-card";
+import { IPFilters, IPProduct } from "@/utils/ingrijirea-plagii-date";
 
 export default function IngrijirePlagi() {
   return (

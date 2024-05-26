@@ -35,7 +35,7 @@ export function Footer() {
       <h3 className="text-[12px]">© 2024 Taissis Concept S.R.L.</h3>
       <div className="flex gap-x-4">
         {linkButtons.map((item) => (
-          <Tooltip content={item.name} delay={1200}>
+          <Tooltip key={item.name} content={item.name} delay={1200}>
             <Button as={Link} href={item.link} color="success">
               {item.icon}
             </Button>

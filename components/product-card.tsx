@@ -15,7 +15,7 @@ export function ProductCard(props: any) {
   const [value, setValue] = useState(0);
 
   return (
-    <Card key={props.key} className="w-full h-full">
+    <Card key={props.key} className="w-full h-full bg-green-50">
       <CardHeader className="p-4 lg:text-xl font-bold text-green-500 text-sm">
         {props.title}
       </CardHeader>
@@ -26,16 +26,15 @@ export function ProductCard(props: any) {
       >
         <Image
           src={props.image}
-          width={400}
+          width={300}
           alt="Card Logo"
           className="w-full"
         />
       </CardBody>
-      <CardFooter className="hidden lg:flex pl-4 justify-between">
-        <h2 className="text-green-600 font-medium text-xl">
-          Preț: {props.price} RON
+      <CardFooter className="flex lg:px-10 gap-x-4 justify-between">
+        <h2 className="text-green-600 font-medium lg:text-xl text-sm">
+          <span className="font-bold">Preț</span>: {props.price} RON
         </h2>
-        <h3>Compoziție: {props.composition}</h3>
         <Button
           color="success"
           className="text-white font-semibold"

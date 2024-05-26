@@ -1,5 +1,5 @@
 import { UserProfile } from "@clerk/nextjs";
-import { NavigationBar } from "../../components/navbar";
+import { NavigationBar } from "../../../components/navbar";
 
 export default function Account() {
   return (

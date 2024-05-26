@@ -4,8 +4,8 @@ import { ThemeProvider as NextThemeProvider } from "next-themes";
 import { NextUIProvider } from "@nextui-org/system";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { NavigationBar } from "./components/navbar";
-import { Footer } from "./components/footer";
+import { NavigationBar } from "../components/navbar";
+import { Footer } from "../components/footer";
 
 const inter = Montserrat({ subsets: ["latin"] });
 

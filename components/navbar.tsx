@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Logo from "../../public/assets/logo.svg";
+import Logo from "../public/assets/logo.svg";
 import { UserIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import {
@@ -15,20 +15,19 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Badge,
+  Switch,
 } from "@nextui-org/react";
 import { ProductsDropdownWrapper } from "./products-dropdown-wrapper";
-import { useState } from "react";
-import { MenuItems } from "../data/menu-items";
+import { MenuItems } from "../utils/menu-items";
+import { useUser } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 
 export function NavigationBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isSignedIn } = useUser();
 
   return (
-    <Navbar shouldHideOnScroll onMenuOpenChange={setIsMenuOpen}>
-      <NavbarMenuToggle
-        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        className="lg:hidden"
-      />
+    <Navbar shouldHideOnScroll>
+      <NavbarMenuToggle className="lg:hidden"/>
       <NavbarBrand>
         <NavbarItem as={Link} href="/" className="hidden lg:flex">
           <Image src={Logo} alt="Logo" className="w-[100px]" />
@@ -71,7 +70,7 @@ export function NavigationBar() {
       <NavbarContent justify="end">
         <NavbarItem>
           <Badge
-            content="21"
+            content={null}
             color="success"
             className="text-white"
             shape="rectangle"
@@ -81,7 +80,7 @@ export function NavigationBar() {
                 color="success"
                 variant="light"
                 as={Link}
-                href="#"
+                href="/shopping-cart"
                 className="flex justify-center"
               >
                 <ShoppingCartIcon className="text-green-500" />
@@ -90,7 +89,8 @@ export function NavigationBar() {
           </Badge>
         </NavbarItem>
         <NavbarItem>
-          <Tooltip content="Contul meu" delay={1000} closeDelay={0}>
+          {!isSignedIn ? (
+            <Tooltip content="Contul meu" delay={1000} closeDelay={0}>
             <Button
               color="success"
               variant="light"
@@ -101,6 +101,9 @@ export function NavigationBar() {
               <UserIcon className="text-green-500" />
             </Button>
           </Tooltip>
+          ) : (
+            <div className="px-4"><UserButton/></div>
+          )}
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="pt-[20px] gap-y-[16px]">
