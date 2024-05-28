@@ -6,8 +6,9 @@ import {
   CardHeader,
   Link,
   Button,
+  CircularProgress,
 } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
+import { Image } from "@nextui-org/image";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
@@ -20,11 +21,12 @@ export function ProductCard(props: any) {
         {props.title}
       </CardHeader>
       <CardBody
-        className="items-center justify-center lg:gap-x-4 gap-y-2"
+        className="items-center justify-center"
         as={Link}
         href={props.link}
       >
         <Image
+          isZoomed
           src={props.image}
           width={300}
           alt="Card Logo"

@@ -6,7 +6,7 @@ import { ChevronRightIcon } from "@heroicons/react/16/solid";
 
 export default function Home() {
   return (
-    <section className="h-fill flex flex-col justify-center items-center p-10">
+    <section className="h-fill flex flex-col justify-center items-center p-6 lg:p-16">
       <div className="flex lg:flex-row flex-col h-auto w-auto bg-green-50 rounded-3xl shadow-2xl backdrop-blur-[7.6px]">
         <Image src={Logo} alt="Logo-ul companiei" className="lg:w-1/2" />
         <div className="flex flex-col p-6 lg:p-10 gap-y-10 justify-center">

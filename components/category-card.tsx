@@ -5,7 +5,8 @@ import {
   CardHeader,
   Link,
 } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
+import { Image, CircularProgress } from "@nextui-org/react";
+import { Suspense } from "react";
 
 export function Cards(props: any) {
   return (
@@ -15,12 +16,16 @@ export function Cards(props: any) {
           {props.title}
         </CardHeader>
         <CardBody className="items-center justify-center lg:gap-x-4 gap-y-2">
-          <Image
-            src={props.image}
-            width={400}
-            alt="Card Logo"
-            className="w-full"
-          />
+          <Suspense fallback={<CircularProgress color="success" aria-label="loading"/>}>
+            <Image
+              isZoomed
+              fallbackSrc={<CircularProgress color="success" aria-label="loading"/>}
+              src={props.image}
+              width={400}
+              alt="Card Logo"
+              className="w-fit"
+            />
+          </Suspense>
         </CardBody>
         <CardFooter className="hidden lg:block text-[12px] pl-4">
           <p>{props.footer}</p>

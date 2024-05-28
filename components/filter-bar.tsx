@@ -23,7 +23,7 @@ export function Filterbar(props: any) {
 
   return (
     <div className="lg:w-1/3 p-4 h-fit lg:h-screen flex flex-col bg-green-50 gap-y-6 shadow-xl">
-      <h1 className="font-bold text-green-500 text-xl">Filtre</h1>
+      <h1 className="font-bold text-green-600 text-xl">Filtre</h1>
       <Input
         label="Caută produsul"
         color="success"
@@ -43,10 +43,6 @@ export function Filterbar(props: any) {
           color="success"
           className="text-green-500"
         />
-        <p className="p-2 bg-green-100 text-green-500">
-          Buget:{" "}
-          {Array.isArray(value) && value.map((pret) => `${pret} RON`).join("-")}
-        </p>
         <div className="grid grid-cols-2 gap-x-4">
           <Input
             type="number"
@@ -65,6 +61,8 @@ export function Filterbar(props: any) {
             color="success"
           />
         </div>
+        <div className="flex flex-col gap-y-2">
+        <p className="text-green-600 font-medium">Filtre selectate: <span className="text-sm text-green-500">{selectedValues}</span></p>
         <Listbox
           className="text-green-500"
           selectionMode="multiple"
@@ -73,7 +71,7 @@ export function Filterbar(props: any) {
           selectedKeys={selectedFilters}
           onSelectionChange={setSelectedFilters}
         >
-          {props.filters.map((item: any) => (
+          {props.filters?.map((item: any) => (
             <ListboxSection key={item.id} title={item.id.charAt(0).toUpperCase() + item.id.slice(1)}>
               {item.filters.map((item: any) => (
                 <ListboxItem key={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</ListboxItem>
@@ -81,7 +79,7 @@ export function Filterbar(props: any) {
             </ListboxSection>
           ))}
         </Listbox>
-        <p className="text-green-500">Valori selectate: {selectedValues}</p>
+        </div>
         <Button title="Aplică" color="success" className="text-white">
           Aplică
         </Button>

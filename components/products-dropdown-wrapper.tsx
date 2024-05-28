@@ -8,7 +8,7 @@ import {
   Link,
 } from "@nextui-org/react";
 import { useState } from "react";
-import { ProductsList } from "../utils/products";
+import { CategoryList } from "../utils/products";
 
 export function ProductsDropdownWrapper() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +46,7 @@ export function ProductsDropdownWrapper() {
           setIsOpen(false);
         }}
       >
-        {ProductsList.map((value) => (
+        {CategoryList.map((value) => (
           <DropdownItem
             key={`${value.title}`}
             as={Link}
